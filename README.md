@@ -4,9 +4,9 @@ Oliver Spain (spaino, W01542192)
 
 ## Live URLs
 
-- **Client:** https://platescout-yourname.vercel.app
-- **Server:** https://platescout-yourname.onrender.com
-- **Server health check:** https://platescout-yourname.onrender.com/api/health
+- **Client:** https://csci342-assignment8.vercel.app/
+- **Server:** https://platescout-ojspain.onrender.com/
+- **Server health check:** https://platescout-ojspain.onrender.com/api/health
 
 ## Local setup
 
