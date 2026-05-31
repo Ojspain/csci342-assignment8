@@ -196,6 +196,37 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+// ============================================================
+// GET /api/yelp/businesses/search
+// ============================================================
+app.get("/api/yelp/businesses/search", async (req, res) => {
+  try {
+    // Reconstruct the query parameters sent by the frontend
+    const params = new URLSearchParams(req.query);
+
+    // Make the request to the Yelp API
+    const yelpResponse = await fetch(
+      `https://api.yelp.com/v3/businesses/search?${params.toString()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.YELP_KEY}`,
+        },
+      },
+    );
+
+    const data = await yelpResponse.json();
+
+    if (!yelpResponse.ok) {
+      return res.status(yelpResponse.status).json(data);
+    }
+
+    res.json(data);
+  } catch (error) {
+    console.error("Yelp API error:", error);
+    res.status(500).json({ error: "Server error while contacting Yelp." });
+  }
+});
+
 // 404 fallback — must come AFTER every route or it'll eat them.
 app.use((req, res) => {
   return res.status(404).json({ error: "Route not found." });
